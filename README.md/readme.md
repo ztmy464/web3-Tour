@@ -1,0 +1,47 @@
+# 目录结构
+
+- web3-learning / # 根目录
+  - foundations / # 基础学习阶段
+    - solidity / # Solidity 基础代码
+      - hello-world / # 简单合约示例
+      - erc20-token / # ERC-20 代币实现
+      - erc721-nft / # ERC-721 NFT 实现
+      - security-patterns / # 安全模式与漏洞示例
+    - rust / # Rust 基础代码
+      - hello-world / # 简单 Rust 程序
+      - smart-contract / # 基于 Solana/Polkadot 的智能合约
+      - blockchain-basics / # 区块链基础实现（如 Merkle Tree）
+    - javascript / # JavaScript 基础代码
+      - web3js-examples / # Web3.js 示例
+      - ethersjs-examples / # Ethers.js 示例
+      - frontend-dapp / # 简单 DApp 前端
+    - tools / # 开发工具学习
+      - foundry / # Foundry 工具使用
+      - hardhat / # Hardhat 工具使用
+      - the-graph / # The Graph 使用示例
+    - notes / # 学习笔记
+      - solidity-notes.md # Solidity 笔记
+      - rust-notes.md # Rust 笔记
+      - javascript-notes.md # JavaScript 笔记
+      - tools-notes.md # 工具使用笔记
+  - projects / # 项目实战阶段
+    - defi / # DeFi 相关项目
+      - uniswap-clone / # Uniswap 克隆
+      - lending-protocol / # 借贷协议实现
+    - nft / # NFT 相关项目
+      - nft-marketplace / # NFT 市场
+      - generative-nft / # 生成艺术 NFT
+    - dao / # DAO 相关项目
+      - governance-dapp / # 治理 DApp
+      - token-voting / # 代币投票系统
+    - tools / # 工具类项目
+      - gas-optimizer / # Gas 优化工具
+      - contract-verifier / # 合约验证工具
+    - hackathons / # 黑客松项目
+      - ethglobal-2023 / # ETHGlobal 2023 参赛项目
+      - other-hackathons / # 其他黑客松项目
+  - resources / # 学习资源
+    - books / # 电子书
+    - papers / # 白皮书与论文
+    - links.md # 优质链接合集
+  - README.md # 项目总览文档
