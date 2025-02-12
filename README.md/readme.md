@@ -54,6 +54,8 @@ git config --global user.email "ztmy464@gmail.com" # 例如我的邮箱 "xxx@163
 
 ssh-keygen -t rsa -b 4096 -C "ztmy464@gmail.com"
 ztmy464@gmail.com
- git remote add origin 'https://github.com/ztmy464/web3-Tour.git'
+git credential reject https://github.com
+git branch
+
 
  ssh-keygen -t rsa -C "ztmy464@gmail.com"
