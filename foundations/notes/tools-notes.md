@@ -14,3 +14,14 @@ git pull origin main
 - git push origin main  
 
 - git add -u && git commit -m "commit" && git push origin dev
+
+- git log:
+if you make a mistake you can revert back to a previous version very easily
+
+- git status:
+see the status of local file
+
+- add a new remote repo 
+
+git remote add foundary-fundme-cu https://github.com/ztmy464/foundary-fundme-cu.git
+git push -u foundary-fundme-cu main
