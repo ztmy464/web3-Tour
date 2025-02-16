@@ -25,3 +25,4 @@ see the status of local file
 
 git remote add foundary-fundme-cu https://github.com/ztmy464/foundary-fundme-cu.git
 git push -u foundary-fundme-cu main
+git remote -v

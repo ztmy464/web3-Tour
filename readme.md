@@ -1,47 +1,74 @@
-# 目录结构
+# Web3 Learning Roadmap
 
-- web3-learning / # 根目录
-  - foundations / # 基础学习阶段
-    - solidity / # Solidity 基础代码
-      - hello-world / # 简单合约示例
-      - erc20-token / # ERC-20 代币实现
-      - erc721-nft / # ERC-721 NFT 实现
-      - security-patterns / # 安全模式与漏洞示例
-    - rust / # Rust 基础代码
-      - hello-world / # 简单 Rust 程序
-      - smart-contract / # 基于 Solana/Polkadot 的智能合约
-      - blockchain-basics / # 区块链基础实现（如 Merkle Tree）
-    - javascript / # JavaScript 基础代码
-      - web3js-examples / # Web3.js 示例
-      - ethersjs-examples / # Ethers.js 示例
-      - frontend-dapp / # 简单 DApp 前端
-    - tools / # 开发工具学习
-      - foundry / # Foundry 工具使用
-      - hardhat / # Hardhat 工具使用
-      - the-graph / # The Graph 使用示例
-    - notes / # 学习笔记
-      - solidity-notes.md # Solidity 笔记
-      - rust-notes.md # Rust 笔记
-      - javascript-notes.md # JavaScript 笔记
-      - tools-notes.md # 工具使用笔记
-  - projects / # 项目实战阶段
-    - defi / # DeFi 相关项目
-      - uniswap-clone / # Uniswap 克隆
-      - lending-protocol / # 借贷协议实现
-    - nft / # NFT 相关项目
-      - nft-marketplace / # NFT 市场
-      - generative-nft / # 生成艺术 NFT
-    - dao / # DAO 相关项目
-      - governance-dapp / # 治理 DApp
-      - token-voting / # 代币投票系统
-    - tools / # 工具类项目
-      - gas-optimizer / # Gas 优化工具
-      - contract-verifier / # 合约验证工具
-    - hackathons / # 黑客松项目
-      - ethglobal-2023 / # ETHGlobal 2023 参赛项目
-      - other-hackathons / # 其他黑客松项目
-  - resources / # 学习资源
-    - books / # 电子书
-    - papers / # 白皮书与论文
-    - links.md # 优质链接合集
-  - README.md # 项目总览文档
+## 📂 Directory Structure
+
+### 1. 🏛 Foundations
+> Fundamental concepts and tools for Web3 development.
+
+#### 🔹 Solidity
+- `hello-world/` - Simple smart contract example
+- `erc20-token/` - ERC-20 token implementation
+- `erc721-nft/` - ERC-721 NFT implementation
+- `security-patterns/` - Security patterns and vulnerabilities
+
+#### 🔹 Rust
+- `hello-world/` - Basic Rust program
+- `smart-contract/` - Smart contracts on Solana/Polkadot
+- `blockchain-basics/` - Blockchain fundamentals (e.g., Merkle Tree)
+
+#### 🔹 JavaScript
+- `web3js-examples/` - Web3.js examples
+- `ethersjs-examples/` - Ethers.js examples
+- `frontend-dapp/` - Simple DApp frontend
+
+#### 🔹 Tools
+- `foundry/` - Using Foundry for smart contract development
+  - `fund-me-cu/` - Learning Foundry Basic test for smart contract example
+  - `simple-storage-f23/` - Basic storage contract with Foundry
+- `hardhat/` - Hardhat development framework
+- `the-graph/` - The Graph API and subgraph usage
+
+#### 📖 Notes
+- `solidity-notes.md` - Solidity study notes
+- `rust-notes.md` - Rust study notes
+- `javascript-notes.md` - JavaScript study notes
+- `tools-notes.md` - Tools usage notes
+
+---
+
+### 2. 🚀 Projects
+> Hands-on development projects for real-world applications.
+
+#### 🔹 DeFi
+- `uniswap-clone/` - Uniswap-like decentralized exchange
+- `lending-protocol/` - Lending protocol implementation
+
+#### 🔹 NFT
+- `nft-marketplace/` - NFT marketplace
+- `generative-nft/` - Generative art NFTs
+
+#### 🔹 DAO
+- `governance-dapp/` - Governance DApp
+- `token-voting/` - Token-based voting system
+
+#### 🔹 Tools
+- `gas-optimizer/` - Gas optimization tool
+- `contract-verifier/` - Smart contract verification tool
+
+#### 🔹 Hackathons
+- `ethglobal-2023/` - ETHGlobal 2023 hackathon project
+- `other-hackathons/` - Other hackathon projects
+
+---
+
+### 3. 📚 Resources
+> Useful learning materials and references.
+
+- `books/` - E-books on blockchain & smart contracts
+- `papers/` - Whitepapers & research papers
+- `links.md` - Curated list of useful links
+
+---
+
+### 📜 README
+- `README.md` - Overview of the Web3 learning roadmap
