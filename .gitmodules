@@ -13,3 +13,12 @@
 [submodule "foundations/tools/foundry/smart-contract-lottery-cu/lib/forge-std"]
 	path = foundations/tools/foundry/smart-contract-lottery-cu/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "foundations/tools/foundry/smart-contract-lottery-cu/lib/chainlink-brownie-contracts"]
+	path = foundations/tools/foundry/smart-contract-lottery-cu/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "foundations/tools/foundry/smart-contract-lottery-cu/lib/solmate"]
+	path = foundations/tools/foundry/smart-contract-lottery-cu/lib/solmate
+	url = https://github.com/transmissions11/solmate
+[submodule "foundations/tools/foundry/smart-contract-lottery-cu/lib/foundry-devops"]
+	path = foundations/tools/foundry/smart-contract-lottery-cu/lib/foundry-devops
+	url = https://github.com/Cyfrin/foundry-devops
