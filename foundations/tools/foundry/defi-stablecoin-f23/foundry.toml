@@ -14,5 +14,9 @@ fs_permissions = [
     { access = "read", path = "./reports" },
     { access = "read", path = "./images/"},
 ]
+[invariant]
+runs = 56
+depth = 100
+fail_on_revert = true
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
