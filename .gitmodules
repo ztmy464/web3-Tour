@@ -49,3 +49,6 @@
 [submodule "foundations/tools/foundry/merkle-airdrop/lib/forge-std"]
 	path = foundations/tools/foundry/merkle-airdrop/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "foundations/tools/foundry/merkle-airdrop/lib/openzeppelin-contracts"]
+	path = foundations/tools/foundry/merkle-airdrop/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
