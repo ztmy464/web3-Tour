@@ -52,3 +52,9 @@
 [submodule "foundations/tools/foundry/merkle-airdrop/lib/openzeppelin-contracts"]
 	path = foundations/tools/foundry/merkle-airdrop/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "foundations/tools/foundry/merkle-airdrop/lib/murky"]
+	path = foundations/tools/foundry/merkle-airdrop/lib/murky
+	url = https://github.com/dmfxyz/murky
+[submodule "foundations/tools/foundry/merkle-airdrop/lib/foundry-devops"]
+	path = foundations/tools/foundry/merkle-airdrop/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops
