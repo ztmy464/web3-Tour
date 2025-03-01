@@ -67,3 +67,6 @@
 [submodule "foundations/tools/foundry/upgrades-f23/lib/openzeppelin-contracts"]
 	path = foundations/tools/foundry/upgrades-f23/lib/openzeppelin-contracts
 	url = https://github.com/Openzeppelin/openzeppelin-contracts
+[submodule "foundations/tools/foundry/upgrades-f23/lib/foundry-devops"]
+	path = foundations/tools/foundry/upgrades-f23/lib/foundry-devops
+	url = https://github.com/chainaccelorg/foundry-devops
