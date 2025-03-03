@@ -79,3 +79,9 @@
 [submodule "foundations/tools/foundry/minimal-account-abstraction/lib/openzeppelin-contracts"]
 	path = foundations/tools/foundry/minimal-account-abstraction/lib/openzeppelin-contracts
 	url = https://github.com/Openzeppelin/openzeppelin-contracts
+[submodule "foundations/tools/foundry/minimal-account-abstraction/lib/foundry-devops"]
+	path = foundations/tools/foundry/minimal-account-abstraction/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops
+[submodule "foundations/tools/foundry/minimal-account-abstraction/lib/foundry-era-contracts"]
+	path = foundations/tools/foundry/minimal-account-abstraction/lib/foundry-era-contracts
+	url = https://github.com/Cyfrin/foundry-era-contracts

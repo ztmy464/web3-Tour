@@ -119,8 +119,11 @@ contract HelperConfig is Script {
         vm.stopBroadcast();
         console2.log("Mocks deployed!");
 
+        // @ztmy This must be assigned before returning, 
+        // if return the NetworkConfig(...) directly ,localNetworkConfig.account == address(0) will always be true.
         localNetworkConfig =
             NetworkConfig({entryPoint: address(entryPoint), usdc: address(erc20Mock), account: ANVIL_DEFAULT_ACCOUNT});
+
         return localNetworkConfig;
     }
 }

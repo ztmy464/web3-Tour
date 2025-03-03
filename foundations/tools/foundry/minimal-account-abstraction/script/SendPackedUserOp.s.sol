@@ -43,14 +43,17 @@ contract SendPackedUserOp is Script {
         address minimalAccount
     ) public view returns (PackedUserOperation memory) {
         // 1. Generate the unsigned data
+        // @ztmy Fill the parameters in the PackedUserOperation struct,  except for signature.
         uint256 nonce = vm.getNonce(minimalAccount) - 1;
         PackedUserOperation memory userOp = _generateUnsignedUserOperation(callData, minimalAccount, nonce);
 
         // 2. Get the userOp Hash
         bytes32 userOpHash = IEntryPoint(config.entryPoint).getUserOpHash(userOp);
+        // @ztmy Convert the Hash to ERC-191 format digest
         bytes32 digest = userOpHash.toEthSignedMessageHash();
 
         // 3. Sign it
+        // @ztmy sign the userOpHash then add it to userOp
         uint8 v;
         bytes32 r;
         bytes32 s;

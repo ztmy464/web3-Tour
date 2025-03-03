@@ -25,10 +25,10 @@ import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/Messa
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
+// recap of all the things ->[t=124316]
 /**
- * Lifecycle of a type 113 (0x71) transaction
+the whole process of running a type 113 account abstraction transaction on ZK sync (Lifecycle of a type 113 (0x71) transaction)
  * msg.sender is the bootloader system contract
- *
  * Phase 1 Validation
  * 1. The user sends the transaction to the "zkSync API client" (sort of a "light node")
  * 2. The zkSync API client checks to see the the nonce is unique by querying the NonceHolder system contract
@@ -36,6 +36,11 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
  * 4. The zkSync API client checks the nonce is updated
  * 5. The zkSync API client calls payForTransaction, or prepareForPaymaster & validateAndPayForPaymasterTransaction
  * 6. The zkSync API client verifies that the bootloader gets paid
+ *
+  everything in validation happens in we said light node,
+  you can think of the ZK sync system is having light nodes (API client nodes) and then the main node (the
+  main sequencer node) so the main node and sequencer as of today are both the same, ZK sync is working on
+  decentralizing the sequencer so that there's not just one but as of today there's just one.
  *
  * Phase 2 Execution
  * 7. The zkSync API client passes the validated transaction to the main node / sequencer (as of today, they are the same)
@@ -81,6 +86,8 @@ contract ZkMinimalAccount is IAccount, Ownable {
      * @notice must validate the transaction (check the owner signed the transaction)
      * @notice also check to see if we have enough money in our account
      */
+    //  @ztmy on ethereum they're UserOperation on zync they are just Transaction 
+    //  @ztmy the bootloader calls it
     function validateTransaction(bytes32, /*_txHash*/ bytes32, /*_suggestedSignedHash*/ Transaction memory _transaction)
         external
         payable
@@ -89,7 +96,7 @@ contract ZkMinimalAccount is IAccount, Ownable {
     {
         return _validateTransaction(_transaction);
     }
-
+    //  @ztmy the bootloader calls it
     function executeTransaction(bytes32, /*_txHash*/ bytes32, /*_suggestedSignedHash*/ Transaction memory _transaction)
         external
         payable
@@ -98,6 +105,10 @@ contract ZkMinimalAccount is IAccount, Ownable {
         _executeTransaction(_transaction);
     }
 
+    // you sign a tx
+    // send the signed tx to your friend
+    // They can send it by calling this function
+    // @ztmy this is where anybody can call it
     function executeTransactionFromOutside(Transaction memory _transaction) external payable {
         bytes4 magic = _validateTransaction(_transaction);
         if (magic != ACCOUNT_VALIDATION_SUCCESS_MAGIC) {
@@ -105,7 +116,7 @@ contract ZkMinimalAccount is IAccount, Ownable {
         }
         _executeTransaction(_transaction);
     }
-
+    // who is going to be paying for the transactions 
     function payForTransaction(bytes32, /*_txHash*/ bytes32, /*_suggestedSignedHash*/ Transaction memory _transaction)
         external
         payable
@@ -128,6 +139,7 @@ contract ZkMinimalAccount is IAccount, Ownable {
         // Call nonceholder
         // increment nonce
         // call(x, y, z) -> system contract call
+        // @ztmy this is what's known as a system call simulation
         SystemContractsCaller.systemCallWithPropagatedRevert(
             uint32(gasleft()),
             address(NONCE_HOLDER_SYSTEM_CONTRACT),
@@ -136,6 +148,7 @@ contract ZkMinimalAccount is IAccount, Ownable {
         );
 
         // Check for fee to pay
+        // @ztmy figures out how much is required to actually send the transaction
         uint256 totalRequiredBalance = _transaction.totalRequiredBalance();
         if (totalRequiredBalance > address(this).balance) {
             revert ZkMinimalAccount__NotEnoughBalance();
