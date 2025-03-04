@@ -10,9 +10,6 @@ contract Box is Ownable {
     // Emitted when the stored value changes
     event ValueChanged(uint256 newValue);
 
-    constructor(address initialOwner) {
-        initialOwner = msg.sender;
-    }
     // Stores a new value in the contract
     function store(uint256 newValue) public onlyOwner {
         value = newValue;
