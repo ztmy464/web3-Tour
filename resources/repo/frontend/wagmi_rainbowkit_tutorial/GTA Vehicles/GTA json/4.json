@@ -1,0 +1,23 @@
+{
+  "name": "Infernus",
+  "description": "A luxury supercar from GTA III, boasting top-tier speed and handling.",
+  "image": "ipfs://bafkreifac6esjdropdotzzb2ksg7hfofe4c3mkdg2qnkdk2dq3iepyb4eu",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Supercar"
+    },
+    {
+      "trait_type": "Top Speed",
+      "value": "230 km/h"
+    },
+    {
+      "trait_type": "Acceleration",
+      "value": "9/10"
+    },
+    {
+      "trait_type": "Drivetrain",
+      "value": "All-Wheel Drive"
+    }
+  ]
+}

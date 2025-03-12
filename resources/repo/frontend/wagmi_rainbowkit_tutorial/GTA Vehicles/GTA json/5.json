@@ -1,0 +1,27 @@
+{
+  "name": "Mr. Whoopee",
+  "description": "A whimsical ice cream truck from GTA III, known for its distinctive jingle and unique style.",
+  "image": "ipfs://bafybeigr2rzja5dmtlzcl5b77ukfj6fd3inkfk4lugnx5q5jkgr3ttuboy",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Utility Vehicle"
+    },
+    {
+      "trait_type": "Top Speed",
+      "value": "120 km/h"
+    },
+    {
+      "trait_type": "Acceleration",
+      "value": "4.5/10"
+    },
+    {
+      "trait_type": "Special Feature",
+      "value": "Ice Cream Jingle"
+    },
+    {
+      "trait_type": "Capacity",
+      "value": "2 passengers"
+    }
+  ]
+}

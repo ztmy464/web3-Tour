@@ -1,0 +1,23 @@
+{
+  "name": "Kuruma",
+  "description": "A reliable and versatile sedan from GTA III, perfect for city driving.",
+  "image": "ipfs://bafkreialvokvm54gdedk5a67mldq6ajltzvqxmvckf2m3jplb6yqtppvci",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Sedan"
+    },
+    {
+      "trait_type": "Top Speed",
+      "value": "160 km/h"
+    },
+    {
+      "trait_type": "Acceleration",
+      "value": "6.5/10"
+    },
+    {
+      "trait_type": "Drivetrain",
+      "value": "Front-Wheel Drive"
+    }
+  ]
+}

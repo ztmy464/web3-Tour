@@ -16,10 +16,10 @@
 - `smart-contract/` - Smart contracts on Solana/Polkadot
 - `blockchain-basics/` - Blockchain fundamentals (e.g., Merkle Tree)
 
-#### 🔹 JavaScript
+#### 🔹 Frontend
 - `web3js-examples/` - Web3.js examples
 - `ethersjs-examples/` - Ethers.js examples
-- `frontend-dapp/` - Simple DApp frontend
+- `next-js/` -  next-js examples
 
 #### 🔹 Tools
 - `foundry/` - Using Foundry for smart contract development

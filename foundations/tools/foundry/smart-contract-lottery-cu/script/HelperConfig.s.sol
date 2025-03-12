@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-
+import {Vm} from "forge-std/Vm.sol";
 import {Script, console2} from "forge-std/Script.sol";
 import {VRFCoordinatorV2_5Mock} from "@chainlink/contracts/src/v0.8/vrf/mocks/VRFCoordinatorV2_5Mock.sol";
 import {LinkToken} from "test/mocks/LinkToken.sol";
 
 abstract contract CodeConstants {
-    uint96 public MOCK_BASE_FEE = 0.25 ether;
+    uint96 public MOCK_BASE_FEE = 0.05 ether;
     uint96 public MOCK_GAS_PRICE_LINK = 1e9;
     // LINK / ETH price
     int256 public MOCK_WEI_PER_UINT_LINK = 4e15;
@@ -101,16 +101,18 @@ contract HelperConfig is CodeConstants, Script {
 
     function getOrCreateAnvilEthConfig() public returns (NetworkConfig memory) {
         // Check to see if we set an active network config
+        console2.log(localNetworkConfig.vrfCoordinator);
         if (localNetworkConfig.vrfCoordinator != address(0)) {
             return localNetworkConfig;
         }
 
         console2.log(unicode"⚠️ You have deployed a mock conract!");
         console2.log("Make sure this was intentional");
+        vm.roll(block.number + 1);
         vm.startBroadcast();
         VRFCoordinatorV2_5Mock vrfCoordinatorV2_5Mock =
             new VRFCoordinatorV2_5Mock(MOCK_BASE_FEE, MOCK_GAS_PRICE_LINK, MOCK_WEI_PER_UINT_LINK);
-            LinkToken linkToken = new LinkToken();
+        LinkToken linkToken = new LinkToken();
         vm.stopBroadcast();
 
         localNetworkConfig = NetworkConfig({

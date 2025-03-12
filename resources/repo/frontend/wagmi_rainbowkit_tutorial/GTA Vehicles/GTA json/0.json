@@ -1,0 +1,23 @@
+{
+  "name": "Sentinel",
+  "description": "A classic luxury sedan from GTA III, favored by mafia bosses.",
+  "image": "ipfs://bafkreid5ol54ymiw2ovkufwzk3rsr2kbkfwhwbpzh6mahs3yjv45k3bax4",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Luxury Sedan"
+    },
+    {
+      "trait_type": "Top Speed",
+      "value": "180 km/h"
+    },
+    {
+      "trait_type": "Acceleration",
+      "value": "7.5/10"
+    },
+    {
+      "trait_type": "Drivetrain",
+      "value": "Rear-Wheel Drive"
+    }
+  ]
+}

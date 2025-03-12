@@ -1,0 +1,23 @@
+{
+  "name": "Banshee",
+  "description": "A high-speed sports car from GTA III, known for its sleek design and performance.",
+  "image": "ipfs://bafkreiaasfbuwf3eibeas75a7o2i224423jeu4kpkkj3mx4ykqd5vkgku4",
+  "attributes": [
+    {
+      "trait_type": "Type",
+      "value": "Sports Car"
+    },
+    {
+      "trait_type": "Top Speed",
+      "value": "200 km/h"
+    },
+    {
+      "trait_type": "Acceleration",
+      "value": "8.5/10"
+    },
+    {
+      "trait_type": "Drivetrain",
+      "value": "Rear-Wheel Drive"
+    }
+  ]
+}
