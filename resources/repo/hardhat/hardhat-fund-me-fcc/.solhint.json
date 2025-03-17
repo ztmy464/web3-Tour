@@ -1,9 +1,0 @@
-// Linting is the process of running a program that will analyse code for potential errors.
-// EsLint is a way to lint for JavaScript code. Solhint is a way to lint for solidity code,
-{
-    "extends": "solhint:recommended",
-    "rules": {
-      "compiler-version": ["error", "^0.8.0"],
-      "func-visibility": ["warn", { "ignoreConstructors": true }]
-    }
-  }

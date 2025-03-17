@@ -91,3 +91,12 @@
 [submodule "foundations/tools/foundry/DAO-f23/lib/openzeppelin-contracts"]
 	path = foundations/tools/foundry/DAO-f23/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "foundations/DeFi/Uniswap V2/Foundry/lib/forge-std"]
+	path = foundations/DeFi/Uniswap V2/Foundry/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "foundations/DeFi/Foundry/lib/forge-std"]
+	path = foundations/DeFi/Foundry/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "foundations/EVM/lib/forge-std"]
+	path = foundations/EVM/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
