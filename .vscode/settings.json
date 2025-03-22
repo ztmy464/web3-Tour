@@ -25,7 +25,7 @@
       "overviewRulerColor": "grey"
     },
     {
-      "text": "HACK:",
+      "text": "QUEST:",
       "color": "#fff",
       "backgroundColor": "#E040FB",
       "overviewRulerColor": "grey"
@@ -34,6 +34,12 @@
       "text": "REVIEW:",
       "color": "black",
       "backgroundColor": "yellow",
+      "overviewRulerColor": "grey"
+    },
+    {
+      "text": "--",
+      "color": "#00ffbd",
+      "backgroundColor": "",
       "overviewRulerColor": "grey"
     }
   ],
@@ -72,5 +78,31 @@
         "**/.next/**"
     ],
     "todohighlight.maxFilesForSearch": 5120,
-    "todohighlight.toggleURI": false
+    "todohighlight.toggleURI": false,
+
+
+
+    "editor.tokenColorCustomizations": {
+      // 93b259
+      // 00ffbd
+      "comments": "#ef5b9c",
+        "textMateRules": [
+            {
+                "name": "Comment",
+                "scope": [
+                    "comment",
+                    "comment.block",
+                    "comment.block.documentation",
+                    "comment.line",
+                    "comment.line.double-slash",
+                    "punctuation.definition.comment"
+                ],
+                "settings": {
+                    "fontStyle": "" // 取消注释的斜体效果
+                }
+            }
+        ]
+    }
+    
 }
+

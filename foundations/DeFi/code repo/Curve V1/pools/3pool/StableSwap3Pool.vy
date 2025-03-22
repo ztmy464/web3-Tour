@@ -199,7 +199,11 @@ def _xp_mem(_balances: uint256[N_COINS]) -> uint256[N_COINS]:
 #@ztmy
 # What is D?
 # Each token balance is D / N when the pool is perfectly balanced
-# every time token balances changed, must recalculate D
+# D is repreeent ideal liquidity (The sum of the balance is the actual liquidity), 
+# It is the optimal balance point that Curve thinks the pool should reach.
+
+# D=f(balances,A)
+# everytime calculate case of we need to use D, it update A by the way.
 
 # it's going to perform the Newton's method to calculate the value D
 # xp: each token balance
@@ -315,6 +319,8 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
         D0 = self.get_D_mem(old_balances, amp)
     new_balances: uint256[N_COINS] = old_balances
 
+# ---------------------------------------transfer in and calc D1--------------------------------------------------------------------------------
+
     for i in range(N_COINS):
         in_amount: uint256 = amounts[i]
         if token_supply == 0:
@@ -350,7 +356,8 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
     D1: uint256 = self.get_D_mem(new_balances, amp)
     assert D1 > D0
 
-    # @ztmy the next part of the code is calculating the inbalance fee
+# ---------------------------------------calc inbalance fee and D2--------------------------------------------------------------------------------
+
     # if the ratios of the token change when we add liquidity then there we'll have to pay inbalance fee
 
     # We need to recalculate the invariant accounting for fees
@@ -374,6 +381,8 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
     else:
         self.balances = new_balances
 
+# ---------------------------------------tokens to mint--------------------------------------------------------------------------------
+
     # Calculate, how much pool tokens to mint
     mint_amount: uint256 = 0
     if token_supply == 0:
@@ -391,6 +400,7 @@ def add_liquidity(amounts: uint256[N_COINS], min_mint_amount: uint256):
 
 @view
 @internal
+# @ztmy The amounts y of j is changed by the input x of asset i
 def get_y(i: int128, j: int128, x: uint256, xp_: uint256[N_COINS]) -> uint256:
     # x in the input is converted to the same price/precision
 
@@ -480,6 +490,8 @@ def exchange(i: int128, j: int128, dx: uint256, min_dy: uint256):
     old_balances: uint256[N_COINS] = self.balances
     xp: uint256[N_COINS] = self._xp_mem(old_balances)
 
+# ---------------------------------------dx_w_fee and transfer in--------------------------------------------------------------------------------
+
     # Handling an unexpected charge of a fee on transfer (USDT)
     dx_w_fee: uint256 = dx
     input_coin: address = self.coins[i]
@@ -514,8 +526,10 @@ def exchange(i: int128, j: int128, dx: uint256, min_dy: uint256):
     if i == FEE_INDEX:
         dx_w_fee = ERC20(input_coin).balanceOf(self) - dx_w_fee
 
+# ---------------------------------------calc y ,dy_fee, dy--------------------------------------------------------------------------------
+
     x: uint256 = xp[i] + dx_w_fee * rates[i] / PRECISION
-    # Newton's method 
+    # Newton's method : 
     y: uint256 = self.get_y(i, j, x, xp)
 
     dy: uint256 = xp[j] - y - 1  # -1 just in case there were some rounding errors
@@ -529,6 +543,8 @@ def exchange(i: int128, j: int128, dx: uint256, min_dy: uint256):
     # Charge admin fee
     dy_admin_fee: uint256 = dy_fee * self.admin_fee / FEE_DENOMINATOR
     dy_admin_fee = dy_admin_fee * PRECISION / rates[j]
+
+# ---------------------------------------update balances and transfer out--------------------------------------------------------------------------------
 
     # Change balances exactly in same way as we change actual ERC20 coin amounts
     self.balances[i] = old_balances[i] + dx_w_fee
@@ -554,7 +570,9 @@ def exchange(i: int128, j: int128, dx: uint256, min_dy: uint256):
 
 @external
 @nonreentrant('lock')
-#@ztmy there's no imbalance fee since all the tokens will be removed in proportion to the lp tokens
+#@ztmy 
+# here we don't call get_D to update D, we only update balances.
+# balances change, so the next time get_D is called, D is automatically reduced.
 def remove_liquidity(_amount: uint256, min_amounts: uint256[N_COINS]):
     total_supply: uint256 = self.token.totalSupply()
     amounts: uint256[N_COINS] = empty(uint256[N_COINS])
@@ -641,6 +659,7 @@ def remove_liquidity_imbalance(amounts: uint256[N_COINS], max_burn_amount: uint2
 
 @view
 @internal
+# @ztmy calculate when D or xp changed, How many the only one token y amount changed.
 def get_y_D(A_: uint256, i: int128, xp: uint256[N_COINS], D: uint256) -> uint256:
     """
     Calculate x[i] if one reduces D from being calculated for xp to D
@@ -699,17 +718,21 @@ def _calc_withdraw_one_coin(_token_amount: uint256, i: int128) -> (uint256, uint
 
     xp: uint256[N_COINS] = self._xp()
 
+# ---------------------------------------calc D0 -> D1, the new_y--------------------------------------------------------------------------------
+
     D0: uint256 = self.get_D(xp, amp)
     D1: uint256 = D0 - _token_amount * D0 / total_supply
     xp_reduced: uint256[N_COINS] = xp
-    # @ztmy calculate when D0 -> D1, and only one token amount changes y0
+    # @ztmy calculate when D0 -> D1, How many the only one token y amount changed
     new_y: uint256 = self.get_y_D(amp, i, xp, D1)
     dy_0: uint256 = (xp[i] - new_y) / precisions[i]  # w/o fees
+
+# ---------------------------------------calc xp_reduced = xp - fee for each token--------------------------------------------------------------------------------
 
     for j in range(N_COINS):
         dx_expected: uint256 = 0
         # @ztmy
-        # taking the the difference this will give us 
+        # taking the difference this will give us 
         # the difference from The ideal Balance of j after removing liquidity (xp[j] * D1 / D0)
         # and the actual amount after removing liquidity
         if j == i:
@@ -720,6 +743,9 @@ def _calc_withdraw_one_coin(_token_amount: uint256, i: int128) -> (uint256, uint
             # and the Imbalance Fee in other currencies is deducted directly from the pool
         xp_reduced[j] -= _fee * dx_expected / FEE_DENOMINATOR
 
+# ---------------------------------------calc dy after charge fee--------------------------------------------------------------------------------
+
+    # @ztmy calculate when xp -> xp_reduced, How many the only one token y amount changed
     dy: uint256 = xp_reduced[i] - self.get_y_D(amp, i, xp_reduced, D1)
     dy = (dy - 1) / precisions[i]  # Withdraw less to account for rounding errors
 
