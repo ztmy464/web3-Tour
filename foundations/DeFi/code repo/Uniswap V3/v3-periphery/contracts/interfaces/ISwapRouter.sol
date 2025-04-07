@@ -24,6 +24,7 @@ interface ISwapRouter is IUniswapV3SwapCallback {
     function exactInputSingle(ExactInputSingleParams calldata params) external payable returns (uint256 amountOut);
 
     struct ExactInputParams {
+        // path = [A, fee, B, fee, C,fee, D]
         bytes path;
         address recipient;
         uint256 deadline;

@@ -2,7 +2,7 @@
 pragma solidity 0.8.19;
 
 import "forge-std/console.sol";
-import "./interfaces/IERC20.sol";
+import "../interfaces/IERC20.sol";
 import "./lib/SafeCast.sol";
 import "./lib/TickMath.sol";
 import "./lib/Position.sol";
@@ -102,7 +102,7 @@ contract CLAMM {
         // token 1 | token 0
         // --------|--------
         //        tick
-        // NOTE:
+        // NOTE: Q3: what is the liquidity after +/- dx or dy?
         // amount = f(tickUpper, tickLower, liquidityDelta)
         if (params.liquidityDelta != 0) {
             // current price is less than the lower price range,
@@ -213,6 +213,7 @@ contract CLAMM {
             })
         );
 
+        // Since were adding liquidity here we assume this amountInt > 0 
         amount0 = uint256(amount0Int);
         amount1 = uint256(amount1Int);
 
@@ -264,6 +265,7 @@ contract CLAMM {
             })
         );
 
+        // Since were removing liquidity here we assume this amountInt < 0 
         amount0 = uint256(-amount0Int);
         amount1 = uint256(-amount1Int);
         // tokensOwed:

@@ -94,8 +94,8 @@ library SwapMath {
             }
         }
 
-QUEST: 
 /*
+QUEST: 
 !max && exactIn，  为什么要计算 amountIn，sqrtRatioNextX96 已经提前停止，而且sqrtRatioNextX96 的值是通过
                 sqrtRatioNextX96 = SqrtPriceMath.getNextSqrtPriceFromInput(
                     sqrtRatioCurrentX96,

@@ -1,12 +1,13 @@
 {
-    "todohighlight.isEnable": true,
-    "todohighlight.isCaseSensitive": true,
-// todohighlight
-"todohighlight.keywords": [
+  // --------------------------todohighlight--------------------------
+  "todohighlight.isEnable": true,
+  "todohighlight.isCaseSensitive": true,
+  // todohighlight
+  "todohighlight.keywords": [
     "DEBUG:",
     "REVIEW:",
     {
-        // NOTE aaa
+      // NOTE aaa
       "text": "NOTE:",
       "color": "#fff",
       "backgroundColor": "#67C23A",
@@ -44,65 +45,75 @@
     }
   ],
 
-    // "todohighlight.keywordsPattern": "TODO:|FIXME:|\\(([^)]+)\\)", //highlight `TODO:`,`FIXME:` or content between parentheses
-    // "todohighlight.defaultStyle": {
-    //     "color": "yellow",
-    //     "backgroundColor": "blue",
-    //     "overviewRulerColor": "#ffab00",
-    //     "cursor": "pointer",
-    //     "border": "1px solid #eee",
-    //     "borderRadius": "1px",
-    //     "isWholeLine": false,
-    //     //other styling properties goes here ... 
-    // },
-    "todohighlight.include": [
-        "**/*.js",
-        "**/*.jsx",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.html",
-        "**/*.php",
-        "**/*.css",
-        "**/*.scss"
-    ],
-    "todohighlight.exclude": [
-        "**/node_modules/**",
-        "**/bower_components/**",
-        "**/dist/**",
-        "**/build/**",
-        "**/.vscode/**",
-        "**/.github/**",
-        "**/_output/**",
-        "**/*.min.*",
-        "**/*.map",
-        "**/.next/**"
-    ],
-    "todohighlight.maxFilesForSearch": 5120,
-    "todohighlight.toggleURI": false,
+  // "todohighlight.keywordsPattern": "TODO:|FIXME:|\\(([^)]+)\\)", //highlight `TODO:`,`FIXME:` or content between parentheses
+  // "todohighlight.defaultStyle": {
+  //     "color": "yellow",
+  //     "backgroundColor": "blue",
+  //     "overviewRulerColor": "#ffab00",
+  //     "cursor": "pointer",
+  //     "border": "1px solid #eee",
+  //     "borderRadius": "1px",
+  //     "isWholeLine": false,
+  //     //other styling properties goes here ...
+  // },
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.php",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**"
+  ],
+  "todohighlight.maxFilesForSearch": 5120,
+  "todohighlight.toggleURI": false,
 
+  // --------------------------editor--------------------------
+  "editor.tokenColorCustomizations": {
+    // 93b259
+    // 00ffbd
+    "comments": "#ef5b9c",
+    "textMateRules": [
+      {
+        "name": "Comment",
+        "scope": [
+          "comment",
+          "comment.block",
+          "comment.block.documentation",
+          "comment.line",
+          "comment.line.double-slash",
+          "punctuation.definition.comment"
+        ],
+        "settings": {
+          "fontStyle": "" // 取消注释的斜体效果
+        }
+      }
+    ]
+  },
 
+  "editor.selectionHighlight": true,
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#9999ea55", // 当前选中单词的背景色（半透明蓝色）
+    "editor.selectionHighlightBackground": "#9999ea55", // 其他匹配单词的背景色（更浅的蓝色）
+    "editor.selectionHighlightBorder": "#5c5cfd", // 所有匹配单词的边框颜色
+  },
 
-    "editor.tokenColorCustomizations": {
-      // 93b259
-      // 00ffbd
-      "comments": "#ef5b9c",
-        "textMateRules": [
-            {
-                "name": "Comment",
-                "scope": [
-                    "comment",
-                    "comment.block",
-                    "comment.block.documentation",
-                    "comment.line",
-                    "comment.line.double-slash",
-                    "punctuation.definition.comment"
-                ],
-                "settings": {
-                    "fontStyle": "" // 取消注释的斜体效果
-                }
-            }
-        ]
-    }
-    
+  // --------------------------prettier--------------------------
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
-

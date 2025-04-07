@@ -9,10 +9,14 @@ pragma solidity >=0.5.0 <0.8.0;
 /// Observations are overwritten when the full length of the oracle array is populated.
 /// The most recent observation is available, independent of the length of the oracle array, by passing 0 to observe()
 library Oracle {
+    //@ztmy A new observation'struct is saved 
+    // whenever the liquidity or price changes by calling a function called write.
+    // write is called at _modifyPosition and swap in pool contract.
     struct Observation {
         // the block timestamp of the observation
         uint32 blockTimestamp;
         // the tick accumulator, i.e. tick * time elapsed since the pool was first initialized
+        //@ztmy we can actually use this to calculate the TWAP
         int56 tickCumulative;
         // the seconds per liquidity, i.e. seconds elapsed / max(1, liquidity) since the pool was first initialized
         uint160 secondsPerLiquidityCumulativeX128;
@@ -37,6 +41,7 @@ library Oracle {
         return
             Observation({
                 blockTimestamp: blockTimestamp,
+                //@ztmy tickCumulative_t+1 = tickCumulative_t + (tick_c × t_delta)
                 tickCumulative: last.tickCumulative + int56(tick) * delta,
                 secondsPerLiquidityCumulativeX128: last.secondsPerLiquidityCumulativeX128 +
                     ((uint160(delta) << 128) / (liquidity > 0 ? liquidity : 1)),
@@ -251,6 +256,8 @@ library Oracle {
         uint128 liquidity,
         uint16 cardinality
     ) internal view returns (int56 tickCumulative, uint160 secondsPerLiquidityCumulativeX128) {
+
+        // -------------------------- Get the Current tickCumulative ----------------------------
         if (secondsAgo == 0) {
             Observation memory last = self[index];
             if (last.blockTimestamp != time) last = transform(last, time, tick, liquidity);
@@ -259,6 +266,9 @@ library Oracle {
 
         uint32 target = time - secondsAgo;
 
+        // -------------------------- Get the target tickCumulative ----------------------------
+
+        //@ztmy get before and after Observation of secondsAgo 
         (Observation memory beforeOrAt, Observation memory atOrAfter) =
             getSurroundingObservations(self, time, target, tick, index, liquidity, cardinality);
 
@@ -270,6 +280,7 @@ library Oracle {
             return (atOrAfter.tickCumulative, atOrAfter.secondsPerLiquidityCumulativeX128);
         } else {
             // we're in the middle
+            //@ztmy do a linear interpolation of the target tickCumulative between before and after
             uint32 observationTimeDelta = atOrAfter.blockTimestamp - beforeOrAt.blockTimestamp;
             uint32 targetDelta = target - beforeOrAt.blockTimestamp;
             return (
@@ -297,6 +308,11 @@ library Oracle {
     /// @param cardinality The number of populated elements in the oracle array
     /// @return tickCumulatives The tick * time elapsed since the pool was first initialized, as of each `secondsAgo`
     /// @return secondsPerLiquidityCumulativeX128s The cumulative seconds / max(1, liquidity) since the pool was first initialized, as of each `secondsAgo`
+
+    // @ztmy
+    // this function will do is for each seconds ago,
+    // it will calculate the tick cumulative at that time.
+    // this is done by calling the function called observe single.
     function observe(
         Observation[65535] storage self,
         uint32 time,

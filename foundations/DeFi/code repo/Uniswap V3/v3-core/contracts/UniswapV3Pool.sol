@@ -224,6 +224,8 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
     }
 
     /// @inheritdoc IUniswapV3PoolDerivedState
+    // @ztmy call to get the tick cumulative.
+    // For the input you re passing an array of seconds, seconds ago from now.
     function observe(uint32[] calldata secondsAgos)
         external
         view
@@ -232,7 +234,12 @@ contract UniswapV3Pool is IUniswapV3Pool, NoDelegateCall {
         returns (int56[] memory tickCumulatives, uint160[] memory secondsPerLiquidityCumulativeX128s)
     {
         return observations.observe(
-            _blockTimestamp(), secondsAgos, slot0.tick, slot0.observationIndex, liquidity, slot0.observationCardinality
+            _blockTimestamp(),
+                secondsAgos, 
+                slot0.tick, 
+                slot0.observationIndex, 
+                liquidity, 
+                slot0.observationCardinality
         );
     }
 

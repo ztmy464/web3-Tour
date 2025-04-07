@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.24;
+pragma solidity ^0.8.20;
 
 address constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 address constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
@@ -32,6 +32,17 @@ address constant UNISWAP_V3_POOL_USDC_WETH_500 = 0x88e6A0c2dDD26FEEb64F039a2c412
 // Curve v1
 address constant CURVE_3POOL = 0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7;
 address constant CURVE_3CRV = 0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490;
+
+// Uniswap V3/swap-router-contracts/libraries/constants
+/// @dev Used for identifying cases when this contract's balance of a token is to be used
+uint256 constant CONTRACT_BALANCE = 0;
+
+/// @dev Used as a flag for identifying msg.sender, saves gas by sending more 0 bytes
+address constant MSG_SENDER = address(1);
+
+/// @dev Used as a flag for identifying address(this), saves gas by sending more 0 bytes
+address constant ADDRESS_THIS = address(2);
+
 
 // Curve v2
 address constant CURVE_TRI_CRYPTO = 0x7F86Bf177Dd4F3494b841a37e810A34dD56c829B;

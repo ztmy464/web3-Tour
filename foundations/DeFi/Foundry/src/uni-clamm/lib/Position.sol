@@ -18,6 +18,7 @@ library Position {
         uint128 tokensOwed1;
     }
 
+    // this owner is NonfungiblePositionManager forever.
     function get(
         mapping(bytes32 => Info) storage self,
         address owner,
